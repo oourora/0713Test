@@ -3,7 +3,6 @@ package com.example.Test.article;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.Value;
 import org.springframework.data.annotation.CreatedDate;
 
 import java.time.LocalDateTime;
@@ -26,4 +25,6 @@ public class Article {
 
     @CreatedDate
     private LocalDateTime createDate;
+
+    private LocalDateTime modifyDate;
 }

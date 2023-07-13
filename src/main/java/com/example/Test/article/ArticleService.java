@@ -13,11 +13,11 @@ public class ArticleService {
 
     private final ArticleRepository articleRepository;
 
-    public List<Article> getlist(){
+    public List<Article> getlist() {
         return this.articleRepository.findAll();
     }
 
-    public void create(String subject, String content){
+    public void create(String subject, String content) {
         Article a = new Article();
         a.setContent(content);
         a.setCreateDate(LocalDateTime.now());
@@ -29,4 +29,17 @@ public class ArticleService {
         Optional<Article> article = this.articleRepository.findById(id);
         return article.get();
     }
+
+    public void modify(Article a, String subject, String content){
+        a.setSubject(subject);
+        a.setContent(content);
+
+        this.articleRepository.save(a);
+    }
+
+    public void delete(Article article){
+        this.articleRepository.delete(article);
+    }
 }
+
+

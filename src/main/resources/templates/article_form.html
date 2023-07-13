@@ -5,9 +5,19 @@
     <title>Title</title>
 </head>
 <body>
+<header>
+    <nav>
+        <h2> 혀나's 게시판</h2>
+        <button> <a href="/"> 홈 </a></button>
+        <a class="nav-link" th:href="@{/member/signin}">로그인</a>
+        <a class="nav-link" th:href="@{/member/signup}">회원가입</a>
+
+    </nav>
+</header>
+
 <div >
     <h5>등록</h5>
-    <form th:object="${ArticleForm}" method="post">
+    <form th:object="${articleForm}" method="post">
 
         <div>
             <label for="subject">제목</label>

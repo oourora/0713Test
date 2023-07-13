@@ -5,6 +5,15 @@
     <title>Title</title>
 </head>
 <body>
+<header>
+  <nav>
+    <h2> 혀나's 게시판</h2>
+    <button> <a href="/"> 홈 </a></button>
+    <a class="nav-link" th:href="@{/member/signin}">로그인</a>
+    <a class="nav-link" th:href="@{/member/signup}">회원가입</a>
+
+  </nav>
+</header>
 
 <table>
   <thead>
@@ -13,6 +22,7 @@
     <th>작성일시</th>
   </tr>
   </thead>
+
   <tbody>
   <tr th:each="article : ${articleList}">
     <td>
@@ -21,8 +31,7 @@
     <td th:text="${article.createDate}"></td>
   </tr>
 
-  <button>
-    <a th:href="@{/article/create}"> 등록 버튼 </a> </button>
+  <button> <a th:href="@{/article/create}"> 게시글 등록 </a> </button>
 
   </tbody>
 </table>

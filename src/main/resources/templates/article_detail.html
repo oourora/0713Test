@@ -5,27 +5,32 @@
     <title>Title</title>
 </head>
 <body>
+<header>
+    <nav>
+        <h2> 혀나's 게시판</h2>
+        <button> <a href="/"> 홈 </a></button>
+        <a class="nav-link" th:href="@{/member/signin}">로그인</a>
+        <a class="nav-link" th:href="@{/member/signup}">회원가입</a>
+
+    </nav>
+</header>
+
 <h2>상세보기</h2>
 <table>
-    <thead>
-    <tr>
-        <th>제목</th>
-        <th>작성일시</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="answer, index : ${answerList}">
-        <td>
-            <a th:href="@{|/answer/detail/${answer.id}|}" th:text="${answer.subject}"></a>
-        </td>
-        <td th:text="${answer.createDate}"></td>
-    </tr>
-    </tbody>
+    <div th:text="${article.subject}"></div>
+    <div th:text="${article.content}"></div>
+    <div th:text="${article.createDate}"></div>
+
 </table>
 <button>
     <a th:href="@{/article/list}"> 목록 </a>
 </button>
-
+<button>
+    <a th:href="@{|/article/modify/${article.id}|}" th:text="수정"></a>
+</button>
+<button>
+    <a th:href="@{|/article/delete/${article.id}|}" th:text="삭제"> </a>
+</button>
 
 </body>
 </html>
