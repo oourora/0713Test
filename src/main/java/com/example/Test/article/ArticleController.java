@@ -32,13 +32,15 @@ public class ArticleController {
     @PostMapping("/create")
     public String articleCreate(@Valid ArticleForm articleForm, BindingResult bingingResult) {
         this.articleService.create(articleForm.getSubject(), articleForm.getContent());
-
         return "redirect:/article/list";
 
-
     }
-
-
+    @GetMapping(value="/detail/{id}")
+    public String articleDetail(Model model, @PathVariable("id") Integer id, ArticleForm articleForm) {
+        Article article = this.articleService.getArticle(id);
+        model.addAttribute("article", article);
+        return "article_detail";
+    }
 
 
 }
