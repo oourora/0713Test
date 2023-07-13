@@ -42,5 +42,12 @@ public class ArticleController {
         return "article_detail";
     }
 
+    public String articleModify(ArticleForm articleForm){
+        Article article = this.articleService.getArticle(id);
+        ArticleForm.setSubject(article.getSubject());
+        ArticleForm.setContent(article.getContent());
+        return "article_form";
+    }
+
 
 }

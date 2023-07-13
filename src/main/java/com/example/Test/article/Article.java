@@ -26,4 +26,6 @@ public class Article {
 
     @CreatedDate
     private LocalDateTime createDate;
+
+    private LocalDateTime modifyDate;
 }
