@@ -1,0 +1,14 @@
+
+
+<nav th:fragment="navbarFragment">
+  <h2> 혀나's 게시판</h2>
+  <button> <a href="/"> 홈 </a></button>
+  <div >
+    <a class="nav-link" sec:authorize="isAnonymous()" th:href="@{/member/signin}">로그인</a>
+    <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/member/signout}">로그아웃</a>
+  </div>
+  <div class="nav-item">
+    <a class="nav-link" th:href="@{/member/signup}">회원가입</a>
+  </div>
+
+</nav>

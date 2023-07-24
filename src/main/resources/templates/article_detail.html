@@ -1,20 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<header>
-    <nav>
-        <h2> 혀나's 게시판</h2>
-        <button> <a href="/"> 홈 </a></button>
-        <a class="nav-link" th:href="@{/member/signin}">로그인</a>
-        <a class="nav-link" th:href="@{/member/signup}">회원가입</a>
 
-    </nav>
-</header>
+<html layout:decorate="~{layout}">
 
+<div layout:fragment="content" class="container" >
 <h2>상세보기</h2>
 <table>
     <div th:text="${article.subject}"></div>
@@ -32,5 +19,5 @@
     <a th:href="@{|/article/delete/${article.id}|}" th:text="삭제"> </a>
 </button>
 
-</body>
+</div>
 </html>

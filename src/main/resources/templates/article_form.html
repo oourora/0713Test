@@ -1,21 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<header>
-    <nav>
-        <h2> 혀나's 게시판</h2>
-        <button> <a href="/"> 홈 </a></button>
-        <a class="nav-link" th:href="@{/member/signin}">로그인</a>
-        <a class="nav-link" th:href="@{/member/signup}">회원가입</a>
+<html layout:decorate="~{layout}" >
 
-    </nav>
-</header>
-
-<div >
+<div layout:fragment="content" class="container" >
     <h5>등록</h5>
     <form th:object="${articleForm}" method="post">
 
@@ -30,5 +16,4 @@
         <input type="submit" value="저장하기">
     </form>
 </div>
-</body>
 </html>

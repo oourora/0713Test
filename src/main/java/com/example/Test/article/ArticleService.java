@@ -1,9 +1,20 @@
 package com.example.Test.article;
 
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Predicate;
+import jakarta.persistence.criteria.Root;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import java.io.Serial;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,6 +51,34 @@ public class ArticleService {
     public void delete(Article article){
         this.articleRepository.delete(article);
     }
+
+    public Page<Article> getList(int page, String kw) {
+        List<Sort.Order> sorts = new ArrayList<>();
+        sorts.add(Sort.Order.desc("createDate"));
+
+        Pageable pageable = PageRequest.of(page, 10, Sort.by(sorts));
+        Specification<Article> spec = search(kw);
+
+        return this.articleRepository.findAll(spec, pageable);
+    }
+    private Specification<Article> search(String kw) {
+        return new Specification<>() {
+            @Serial
+            private static final long serialVersionUID = 1L;
+            @Override
+            public Predicate toPredicate(Root<Article> a, CriteriaQuery<?> query, CriteriaBuilder cb) {
+                query.distinct(true);
+
+
+                return cb.or(cb.like(a.get("subject"), "%" + kw + "%"),
+                        cb.like(a.get("content"), "%" + kw + "%"),
+                        cb.like(a.get("content"), "%" + kw + "%"));
+            }
+        };
+    }
+
+
+
 }
 
 

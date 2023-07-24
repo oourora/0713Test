@@ -36,7 +36,7 @@ public class MemberController {
 
         if (!memberForm.getPassword1().equals(memberForm.getPassword2())) {
             bindingResult.rejectValue("password2", "passwordInCorrect",
-                    "패스워드가 일치하지 않습니다.");
+                    "패스워드가 일치하지 않음.");
             return "signup_form";
         }
 
@@ -44,7 +44,7 @@ public class MemberController {
             memberService.create(memberForm.getUsername(), memberForm.getPassword1(), memberForm.getEmail());
         } catch (DataIntegrityViolationException e) {
             e.printStackTrace();
-            bindingResult.reject("signupFailed", "등록된 사용자입니다.");
+            bindingResult.reject("signupFailed", "등록된 사용자.");
             return "signup_form";
         } catch (Exception e) {
             e.printStackTrace();
