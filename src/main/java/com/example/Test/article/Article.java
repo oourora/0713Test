@@ -1,11 +1,13 @@
 package com.example.Test.article;
 
+import com.example.Test.member.Member;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 
 import java.time.LocalDateTime;
+import java.util.Set;
 
 
 @Getter
@@ -27,4 +29,14 @@ public class Article {
     private LocalDateTime createDate;
 
     private LocalDateTime modifyDate;
+
+    @ManyToOne
+    private Member author;
+
+    @ManyToMany
+    Set<Member> voter;
+
+    @Column
+    private Integer viewCount = 0;
+
 }

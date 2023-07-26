@@ -1,14 +1,44 @@
+<!doctype html>
+<html lang="kor">
+<head>
+    <meta charset="UTF-8">
+    <style>
+      .b-example-divider {
+        height: 3rem;
+        background-color: rgba(0, 0, 0, .1);
+        border: solid rgba(0, 0, 0, .15);
+        border-width: 1px 0;
+        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+      }
 
+    </style>
 
-<nav th:fragment="navbarFragment">
-  <h2> 혀나's 게시판</h2>
-  <button> <a href="/"> 홈 </a></button>
-  <div >
-    <a class="nav-link" sec:authorize="isAnonymous()" th:href="@{/member/signin}">로그인</a>
-    <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/member/signout}">로그아웃</a>
-  </div>
-  <div class="nav-item">
-    <a class="nav-link" th:href="@{/member/signup}">회원가입</a>
-  </div>
+    <title>navbar</title>
+</head>
+<body>
 
+<nav th:fragment="navbarFragment"
+     class="navbar d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+
+    <div class="container">
+        <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+            <picture>
+                <img src="/img/FuFu.gif" class="img-fluid img-thumbnail bi me-2" width="80" height="80" role="img"
+                     aria-label="FuFu">
+            </picture>
+        </a>
+
+        <div class="col-md-3 text-end point-color">
+            <a sec:authorize="isAnonymous()" th:href="@{/member/signin}"
+               class="point-color btn btn-outline-primary me-2">Sign-in
+            </a>
+            <a sec:authorize="isAuthenticated()" th:href="@{/member/signout}"
+               class="point-color btn btn-outline-primary me-2 ">Sign-out
+            </a>
+            <a th:href="@{/member/signup}" class="point-color btn btn-primary ">Sign-up</a>
+        </div>
+
+    </div>
 </nav>
+</body>
+</html>

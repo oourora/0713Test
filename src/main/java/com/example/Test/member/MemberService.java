@@ -1,6 +1,7 @@
 package com.example.Test.member;
 
 
+import com.example.Test.article.DataNotFoundException;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Predicate;
@@ -17,6 +18,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import java.io.Serial;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -34,6 +36,15 @@ public class MemberService {
         member.setPassword(passwordEncoder.encode(password));
         this.memberRepository.save(member);
         return member;
+    }
+
+    public Member getUser(String username) {
+        Optional<Member> member = this.memberRepository.findByUsername(username);
+        if (member.isPresent()) {
+            return member.get();
+        } else {
+            throw new DataNotFoundException("사용자를 찾을 수 없음");
+        }
     }
 
 }
