@@ -59,6 +59,7 @@ public class ArticleController {
     @GetMapping(value = "/detail/{id}")
     public String articleDetail(Model model, @PathVariable("id") Integer id, ArticleForm articleForm) {
         Article article = this.articleService.getArticle(id);
+        articleService.viewCount(article);
         model.addAttribute("article", article);
         return "article_detail";
     }
